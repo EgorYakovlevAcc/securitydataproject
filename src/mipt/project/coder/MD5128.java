@@ -89,7 +89,6 @@ public class MD5128 {
         for (String s : splitedList) {
             int i = 1;
             char[] char_arr = s.toCharArray();
-            System.out.println("CHAR ARRAY = " + s);
             for (int k = 0; k < 16; k++) {
                 if ((k!= 0) &&  (k % 4 == 0)){
                     a = originalA;
@@ -114,9 +113,8 @@ public class MD5128 {
                     c = originalD;
                     d = originalA;
                 }
-                System.out.println("Egor " + a + " " + b + " " + c +" " + d + " " + e + " " + f + " " + g+ " " + h +" " + k + " "+ SHIFT_AMTS[k%4] + " "+ i);
+                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + e + " " + f + " " + g+ " " + h +" " + k + " "+ SHIFT_AMTS[k%4] + " "+ i);
                 a = b + ((a + funF(b, c, d) + Integer.parseInt(String.valueOf(char_arr[k])) + TABLE_T[i - 1]) << (SHIFT_AMTS[k % 4]));
-                System.out.println("CHAR = " + Integer.parseInt(String.valueOf(char_arr[k])));
                 originalA = a;
                 originalB = b;
                 originalC = c;
@@ -148,7 +146,7 @@ public class MD5128 {
                     c = originalD;
                     d = originalA;
                 }
-                System.out.println("Egor " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 4] + " "+ i);
+                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 4] + " "+ i);
                 a = b + ((a + funG(b, c, d) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 4]);
                 originalA = a;
                 originalB = b;
@@ -182,7 +180,7 @@ public class MD5128 {
                     g = originalH;
                     h = originalE;
                 }
-                System.out.println("Egor " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 8] + " "+ i);
+                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 8] + " "+ i);
                 e = f + ((e + funH(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 8]);
                 originalE = e;
                 originalF = f;
@@ -216,7 +214,7 @@ public class MD5128 {
                     g = originalH;
                     h = originalE;
                 }
-                System.out.println("Egor ]]" + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 12] + " "+ i);
+                System.out.println("Input values" + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 12] + " "+ i);
                 e = f + ((e + funI(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1] << SHIFT_AMTS[k%4 + 12]));
                 originalE = e;
                 originalF = f;
