@@ -3,7 +3,7 @@ package mipt.project.coder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MD5128 {
+public class MD5_256Out {
     private static final int INIT_A = 0x67452301;
     private static final int INIT_B = (int) 0xEFCDAB89L;
     private static final int INIT_C = (int) 0x98BADCFEL;
@@ -12,10 +12,6 @@ public class MD5128 {
     private static final int INIT_F = (int) 0x99B34822L;
     private static final int INIT_G = (int) 0x2C2E59B3L;
     private static final int INIT_H = (int) 0xBFB5E5L;
-
-    MD5128() {
-
-    }
 
     private static final int[] SHIFT_AMTS = {
             7, 12, 17, 22,
@@ -59,6 +55,8 @@ public class MD5128 {
         //step 2: L' = 512*k + 448
         while (inputStringBuilder.length() % 512 != 448) {
             inputStringBuilder.append("0");
+            inputStringBuilder.append("1");
+            inputStringBuilder.append("1");
         }
         List<String> splitedList = splitStringToSmallStringsBySize(16, inputStringBuilder.toString());
         System.out.println(splitedList);
