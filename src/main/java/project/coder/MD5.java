@@ -1,6 +1,8 @@
-package mipt.project.coder;
+package project.coder;
 
-public class MD5Coder {
+import static project.coder.CoderHelper.toHexString;
+
+public class MD5 implements HashFunction {
     private static final int INIT_A = 0x67452301;
     private static final int INIT_B = (int)0xEFCDAB89L;
     private static final int INIT_C = (int)0x98BADCFEL;
@@ -20,7 +22,8 @@ public class MD5Coder {
             TABLE_T[i] = (int)(long)((1L << 32) * Math.abs(Math.sin(i + 1)));
     }
 
-    public static byte[] computeMD5(byte[] message)
+    @Override
+    public String compute(byte[] message)
     {
         int messageLenBytes = message.length;
         int numBlocks = ((messageLenBytes + 8) >>> 6) + 1;
@@ -101,27 +104,6 @@ public class MD5Coder {
                 n >>>= 8;
             }
         }
-        return md5;
+        return toHexString(md5);
     }
-
-    public static String toHexString(byte[] b)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < b.length; i++)
-        {
-            sb.append(String.format("%02X", b[i] & 0xFF));
-        }
-        return sb.toString();
-    }
-    public static String to2String(byte[] b)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < b.length; i++)
-        {
-            sb.append(Integer.toString(b[i], 2));
-        }
-        return sb.toString();
-    }
-
-
 }

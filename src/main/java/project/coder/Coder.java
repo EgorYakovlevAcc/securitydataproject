@@ -1,4 +1,4 @@
-package mipt.project.coder;
+package project.coder;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

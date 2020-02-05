@@ -1,9 +1,11 @@
-package mipt.project.coder;
+package project.coder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MD5_256Out {
+import static project.coder.CoderHelper.splitStringToSmallStringsBySize;
+import static project.coder.CoderHelper.toHexString;
+
+public class MD5_256 implements HashFunction {
     private static final int INIT_A = 0x67452301;
     private static final int INIT_B = (int) 0xEFCDAB89L;
     private static final int INIT_C = (int) 0x98BADCFEL;
@@ -43,7 +45,8 @@ public class MD5_256Out {
             TABLE_T[i] = (int) (long) ((1L << 32) * Math.abs(Math.sin(i + 1)));
     }
 
-    public static String calculate(byte[] input) {
+    @Override
+    public String compute(byte[] input) {
         StringBuilder stringBuilder = new StringBuilder();
         for (byte b: input) {
             stringBuilder.append(Integer.toString(b, 2));
@@ -102,13 +105,14 @@ public class MD5_256Out {
                     b = originalD;
                     c = originalA;
                     d = originalB;
-                    
+
                 } else if (k % 4 == 3) {
                     a = originalB;
                     b = originalC;
                     c = originalD;
                     d = originalA;
                 }
+//                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + e + " " + f + " " + g+ " " + h +" " + k + " "+ SHIFT_AMTS[k%4] + " "+ i);
                 a = b + ((a + funF(b, c, d) + Integer.parseInt(String.valueOf(char_arr[k])) + TABLE_T[i - 1]) << (SHIFT_AMTS[k % 4]));
                 originalA = a;
                 originalB = b;
@@ -141,6 +145,7 @@ public class MD5_256Out {
                     c = originalD;
                     d = originalA;
                 }
+//                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 4] + " "+ i);
                 a = b + ((a + funG(b, c, d) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 4]);
                 originalA = a;
                 originalB = b;
@@ -174,6 +179,7 @@ public class MD5_256Out {
                     g = originalH;
                     h = originalE;
                 }
+//                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 8] + " "+ i);
                 e = f + ((e + funH(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 8]);
                 originalE = e;
                 originalF = f;
@@ -207,6 +213,7 @@ public class MD5_256Out {
                     g = originalH;
                     h = originalE;
                 }
+//                System.out.println("Input values" + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 12] + " "+ i);
                 e = f + ((e + funI(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1] << SHIFT_AMTS[k%4 + 12]));
                 originalE = e;
                 originalF = f;
@@ -261,28 +268,7 @@ public class MD5_256Out {
                 n >>>= 8;
             }
         }
-        String string = toHexString(md5);
-        System.out.println(string.length());
-    return "result = " + string;
+        return toHexString(md5);
     }
-
-    private static List<String> splitStringToSmallStringsBySize(int size, String string) {
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < string.length(); i++) {
-            if ((i % size == 0) && (i != 0)) {
-                strings.add(string.substring(i - size, i));
-            }
-        }
-        return strings;
-    }
-
-    public static String toHexString(byte[] b) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < b.length; i++) {
-            sb.append(String.format("%02X", b[i] & 0xFF));
-        }
-        return sb.toString();
-    }
-
 
 }
