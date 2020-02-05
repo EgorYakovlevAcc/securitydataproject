@@ -48,7 +48,6 @@ public class MD5_256Out {
         for (byte b: input) {
             stringBuilder.append(Integer.toString(b, 2));
         }
-        System.out.println(stringBuilder.toString());
         StringBuilder inputStringBuilder = new StringBuilder();
         inputStringBuilder.append(stringBuilder.toString());
         inputStringBuilder.append("1");
@@ -59,7 +58,6 @@ public class MD5_256Out {
             inputStringBuilder.append("1");
         }
         List<String> splitedList = splitStringToSmallStringsBySize(16, inputStringBuilder.toString());
-        System.out.println(splitedList);
         int a = INIT_A;
         int b = INIT_B;
         int c = INIT_C;
@@ -111,7 +109,6 @@ public class MD5_256Out {
                     c = originalD;
                     d = originalA;
                 }
-                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + e + " " + f + " " + g+ " " + h +" " + k + " "+ SHIFT_AMTS[k%4] + " "+ i);
                 a = b + ((a + funF(b, c, d) + Integer.parseInt(String.valueOf(char_arr[k])) + TABLE_T[i - 1]) << (SHIFT_AMTS[k % 4]));
                 originalA = a;
                 originalB = b;
@@ -144,7 +141,6 @@ public class MD5_256Out {
                     c = originalD;
                     d = originalA;
                 }
-                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 4] + " "+ i);
                 a = b + ((a + funG(b, c, d) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 4]);
                 originalA = a;
                 originalB = b;
@@ -178,7 +174,6 @@ public class MD5_256Out {
                     g = originalH;
                     h = originalE;
                 }
-                System.out.println("Input values " + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 8] + " "+ i);
                 e = f + ((e + funH(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1]) << SHIFT_AMTS[k%4 + 8]);
                 originalE = e;
                 originalF = f;
@@ -212,7 +207,6 @@ public class MD5_256Out {
                     g = originalH;
                     h = originalE;
                 }
-                System.out.println("Input values" + a + " " + b + " " + c +" " + d + " " + cycle + " "+ SHIFT_AMTS[k%4 + 12] + " "+ i);
                 e = f + ((e + funI(f, g, h) + Integer.parseInt(String.valueOf(char_arr[cycle])) + TABLE_T[i - 1] << SHIFT_AMTS[k%4 + 12]));
                 originalE = e;
                 originalF = f;
