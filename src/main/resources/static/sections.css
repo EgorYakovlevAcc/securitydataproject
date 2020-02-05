@@ -1,0 +1,11 @@
+html {
+    scroll-behavior: smooth;
+}
+
+#section1 {
+    height: 600px;
+}
+
+#section2 {
+    height: 600px;
+}
