@@ -73,12 +73,15 @@
                 <select class="form-control select-form" id="hashFunction" required>
                 </select>
             </div>
-            <h4>Extensions:</h4>
-            <div class="form-group select">
-                <select class="form-control select-form" id="extension#1">
-                </select>
-                <button class="btn btn-sm btn-info" onclick="addExtension(this.parentNode)">Add Extension</button>
-                <button class="btn btn-sm btn-info removeBtn" onclick="removeExtension(this.parentNode)" disabled>
+            <div>
+                <h4>Extensions:</h4>
+                <div class="form-group select">
+                    <select class="form-control select-form" id="extension#0" hidden>
+                    </select>
+                </div>
+                <button class="btn btn-sm btn-info" onclick="addExtension(this.parentNode)">Add Extension
+                </button>
+                <button class="btn btn-sm btn-info removeBtn" onclick="removeExtension(this.parentNode)">
                     Remove Extension
                 </button>
             </div>

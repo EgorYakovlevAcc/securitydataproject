@@ -36,7 +36,7 @@ public class BackendServiceImpl {
 
     public String calculateHash(CalculateHashBody requestBody) {
         HashFunction function = resolveHashFunctions(requestBody);
-        requestBody.setMessage(hashExtension.calculateExtensions(function, requestBody.getMessage(), requestBody.getExtensions()));
+        requestBody.setMessage(hashExtension.calculateExtensions(function, requestBody.getMessage().getBytes(), requestBody.getExtensions()));
         startAttacks(requestBody);
         return requestBody.getMessage();
     }

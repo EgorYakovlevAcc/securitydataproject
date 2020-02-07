@@ -14,7 +14,7 @@ public class SHA1 implements HashFunction {
     }
 
     @Override
-    public String compute(byte[] message) {
-        return DigestUtils.sha1Hex(message);
+    public byte[] compute(byte[] message) {
+        return DigestUtils.sha1(message);
     }
 }

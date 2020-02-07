@@ -14,7 +14,7 @@ fetch("/api/hashFunctions")
 
 fetch("/api/extensions")
     .then(extensions => extensions.json())
-    .then(extensions => addOptions(document.getElementById("extension#1"), extensions))
+    .then(extensions => addOptions(document.getElementById("extension#0"), extensions))
     .catch(e => console.log(e));
 
 function showGoTopButton() {
@@ -32,16 +32,22 @@ function topFunction() {
 }
 
 function addExtension(selectForm) {
-    const newSelectForm = selectForm.cloneNode(true);
-    const id = parseInt(newSelectForm.getElementsByTagName("select")[0].id.split("#")[1]) + 1;
-    newSelectForm.getElementsByTagName("select")[0].id = "extentionSelect#" + id;
-    newSelectForm.getElementsByClassName("removeBtn")[0].removeAttribute("disabled");
-    selectForm.parentElement.appendChild(newSelectForm);
+    let select = selectForm.getElementsByTagName("select")[0];
+    const newSelect = select.cloneNode(true);
+    const id = parseInt(newSelect.id.split("#")[1]) + 1;
+    newSelect.hidden = false;
+    newSelect.id = "extentionSelect#" + id;
+    // newSelectForm.getElementsByClassName("removeBtn")[0].removeAttribute("disabled");
+    select.parentElement.appendChild(newSelect);
     // lastSelectId++;
 }
 
 function removeExtension(selectForm) {
-    selectForm.parentElement.removeChild(selectForm);
+    let selectors = selectForm.getElementsByTagName("select");
+    if ((selectors.length - 1) > 0) {
+        let select = selectors[selectors.length - 1];
+        select.parentNode.removeChild(select);
+    }
     // const
 }
 

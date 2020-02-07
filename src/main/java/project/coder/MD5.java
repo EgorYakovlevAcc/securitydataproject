@@ -32,7 +32,7 @@ public class MD5 implements HashFunction {
     }
 
     @Override
-    public String compute(byte[] message)
+    public byte[] compute(byte[] message)
     {
         int messageLenBytes = message.length;
         int numBlocks = ((messageLenBytes + 8) >>> 6) + 1;
@@ -113,6 +113,6 @@ public class MD5 implements HashFunction {
                 n >>>= 8;
             }
         }
-        return toHexString(md5);
+        return md5;
     }
 }

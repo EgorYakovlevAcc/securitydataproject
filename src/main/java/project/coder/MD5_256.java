@@ -55,7 +55,7 @@ public class MD5_256 implements HashFunction {
     }
 
     @Override
-    public String compute(byte[] input) {
+    public byte[] compute(byte[] input) {
         StringBuilder stringBuilder = new StringBuilder();
         for (byte b: input) {
             stringBuilder.append(Integer.toString(b, 2));
@@ -277,7 +277,7 @@ public class MD5_256 implements HashFunction {
                 n >>>= 8;
             }
         }
-        return toHexString(md5);
+        return md5;
     }
 
 }
