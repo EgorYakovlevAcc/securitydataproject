@@ -41,13 +41,4 @@ public class MainController {
     public String calculateHash(@RequestBody CalculateHashBody requestBody){
         return backendService.calculateHash(requestBody);
     }
-
-
-//    @PostMapping(value = "/registration")
-//    public String registerUserAccount(@Valid final UserDto accountDto, final HttpServletRequest request) {
-//        log.debug("Registering user account with information: {}", accountDto);
-//
-//        final HashResult registered = userService.registerNewUserAccount(accountDto);
-//        return "Success";
-//    }
 }

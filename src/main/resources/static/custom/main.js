@@ -36,7 +36,7 @@ function addExtension(selectForm) {
     const newSelect = select.cloneNode(true);
     const id = parseInt(newSelect.id.split("#")[1]) + 1;
     newSelect.hidden = false;
-    newSelect.id = "extentionSelect#" + id;
+    newSelect.id = "extension#" + id;
     // newSelectForm.getElementsByClassName("removeBtn")[0].removeAttribute("disabled");
     select.parentElement.appendChild(newSelect);
     // lastSelectId++;
@@ -92,13 +92,14 @@ function calculateHash() {
 
 function fillDataWithFields(data, tagName) {
     Array.prototype.forEach.call(document.getElementsByTagName(tagName),
-        (select) => {
-            if (select.type === "checkbox") {
-                data[select.id] = select.checked;
-            } else if (select.id.startsWith("extension")) {
-                data["extensions"].push(select.value);
+        (input) => {
+        console.log(input.id + " " + input.hidden + " " + input.type + " " + input.id.startsWith("extension"));
+            if (input.type === "checkbox") {
+                data[input.id] = input.checked;
+            } else if (input.id.startsWith("extension") && !input.hidden) {
+                data["extensions"].push(input.value);
             } else {
-                data[select.id] = select.value;
+                data[input.id] = input.value;
             }
         });
 }
