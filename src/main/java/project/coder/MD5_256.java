@@ -46,6 +46,11 @@ public class MD5_256 implements HashFunction {
     }
 
     @Override
+    public String getId() {
+        return "md5_256";
+    }
+
+    @Override
     public String compute(byte[] input) {
         StringBuilder stringBuilder = new StringBuilder();
         for (byte b: input) {

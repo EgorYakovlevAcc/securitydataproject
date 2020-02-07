@@ -1,0 +1,50 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /*padding-top: 5rem;*/
+}
+.starter-template {
+    /*margin-top: 250px;*/
+    /*padding: 3rem 1.5rem;*/
+    text-align: center;
+}
+
+#section1 {
+    /*margin-top: 250px;*/
+    padding-top: 250px;
+    text-align: center;
+    min-height: 600px;
+}
+
+#section2 {
+    /*margin-top: 250px;*/
+    padding-top: 70px;
+    margin-top: 200px;
+    text-align: center;
+    min-height: 600px;
+}
+
+#section3 {
+    text-align: center;
+    padding-top: 250px;
+    min-height: 600px;
+}
+
+#goTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 40px; /* Place the button at the bottom of the page */
+    right: 50px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    cursor: pointer; /* Add a mouse pointer on hover */
+}
+
+#goTopBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.select-form {
+    margin-bottom: 10px;
+}

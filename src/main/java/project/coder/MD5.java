@@ -23,6 +23,11 @@ public class MD5 implements HashFunction {
     }
 
     @Override
+    public String getId() {
+        return "md5";
+    }
+
+    @Override
     public String compute(byte[] message)
     {
         int messageLenBytes = message.length;

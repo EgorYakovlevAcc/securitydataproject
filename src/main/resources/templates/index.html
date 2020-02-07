@@ -13,8 +13,7 @@
     <link href="/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/starter-template.css" rel="stylesheet">
-    <link href="/sections.css" rel="stylesheet">
+    <link href="/custom/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,9 +28,12 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#section2">Hash!<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item active">
+                <a class="nav-link" href="#section3">Last Hashes<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">Hashes</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -43,34 +45,100 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
 
-<main id="section1">
-    <h1>Hash Machine</h1>
-    <p class="lead">The best tool to improve your hash.</p>
-    <a id="dick" href="#section2" class="btn btn-lg btn-dark">Start Hashing</a>
-</main>
+<div id="section1" class="container">
+    <main>
+        <h1>Hash Machine</h1>
+        <p class="lead">Smart playground with cryptographic hash functions.</p>
+        <a href="#section2" class="btn btn-lg btn-dark">Start Hashing</a>
+    </main>
+</div>
+<div id="section2" class="container">
+    <main>
+        <form action="/calculate" method="post">
+            <div class="form-group">
+                <h1>Message for hashing</h1>
+                <input type="text" class="form-control" id="message" aria-describedby="messageHelp"
+                       placeholder="Enter message">
+                <small id="messageHelp" class="form-text text-muted">You may enter anything.
+                </small>
+            </div>
+            <br>
+            <div>
+                <h4>Hash Function:</h4>
+                <div class="form-group select">
+                    <select class="form-control select-form" id="hashFunction" required>
+                    </select>
+                </div>
+                <h4>Extensions:</h4>
+                <div class="form-group select">
+                    <select class="form-control select-form" id="extensionSelect#1">
+                    </select>
+                    <button class="btn btn-sm btn-info" onclick="addExtension(this.parentNode)">Add Extension</button>
+                    <button class="btn btn-sm btn-info" onclick="removeExtension(this.parentNode)">Remove Extension
+                    </button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <h4>Attacks to Test Hash Function</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="rainbow">
+                    <label class="form-check-label" for="inlineCheckbox1">Rainbow table attack</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="dictionary" disabled>
+                    <label class="form-check-label" for="inlineCheckbox2">Dictionary attack</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="tunnel">
+                    <label class="form-check-label" for="inlineCheckbox3">Tunneling</label>
+                </div>
+            </div>
+            <br>
+            <div>
+                <h4>Please provide email to receive the results</h4>
+                <input type="email" class="form-control" id="email"
+                       placeholder="Enter email">
+            </div>
+            <br>
+            <button class="btn btn-lg btn-info">HASH!</button>
+        </form>
+    </main>
+</div>
 
+<div id="section3" class="container">
+    <main>
+        <div style="font-size: x-large;">Last Hashes</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Message</th>
+                <th scope="col">Hash Functions</th>
+                <th scope="col">Result</th>
+                <th scope="col">Full info</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr hidden>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>FILE</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
 
-<main id="section2">
-    Hashing
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">1</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2">2</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
-    </div>
+<button onclick="topFunction()" class="btn btn-lg btn-info" id="goTopBtn" title="Go to top">Top</button>
 
-</main>
 
 <script src="/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -78,12 +146,7 @@
 <script>window.jQuery || document.write('<script src="/jquery-slim.min.js"><\/script>')</script>
 <script src="/popper.min.js"></script>
 <script src="/bootstrap.min.js"></script>
+<script src="/custom/main.js"></script>
 </body>
 
-<script>
-    function showHashing() {
-        this.document.getElementById("dick").innerText = "Stop hashing";
-
-    }
-</script>
 </html>
