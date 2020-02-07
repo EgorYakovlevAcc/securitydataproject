@@ -1,10 +1,14 @@
 package project.coder;
 
+import org.springframework.stereotype.Component;
+import project.persistence.model.HashFunctionType;
+
 import java.util.List;
 
 import static project.coder.CoderHelper.splitStringToSmallStringsBySize;
 import static project.coder.CoderHelper.toHexString;
 
+@Component
 public class MD5_256 implements HashFunction {
     private static final int INIT_A = 0x67452301;
     private static final int INIT_B = (int) 0xEFCDAB89L;
@@ -47,7 +51,7 @@ public class MD5_256 implements HashFunction {
 
     @Override
     public String getId() {
-        return "md5_256";
+        return HashFunctionType.MD5_256.getType();
     }
 
     @Override

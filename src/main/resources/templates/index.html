@@ -59,55 +59,63 @@
 </div>
 <div id="section2" class="container">
     <main>
-        <form action="/calculate" method="post">
-            <div class="form-group">
-                <h1>Message for hashing</h1>
-                <input type="text" class="form-control" id="message" aria-describedby="messageHelp"
-                       placeholder="Enter message">
-                <small id="messageHelp" class="form-text text-muted">You may enter anything.
-                </small>
+        <div class="form-group">
+            <h1>Message for hashing</h1>
+            <input type="text" class="form-control" id="message" aria-describedby="messageHelp"
+                   placeholder="Enter message" required>
+            <small id="messageHelp" class="form-text text-muted">You may enter anything.
+            </small>
+        </div>
+        <br>
+        <div>
+            <h4>Hash Function:</h4>
+            <div class="form-group select">
+                <select class="form-control select-form" id="hashFunction" required>
+                </select>
             </div>
-            <br>
-            <div>
-                <h4>Hash Function:</h4>
-                <div class="form-group select">
-                    <select class="form-control select-form" id="hashFunction" required>
-                    </select>
-                </div>
-                <h4>Extensions:</h4>
-                <div class="form-group select">
-                    <select class="form-control select-form" id="extensionSelect#1">
-                    </select>
-                    <button class="btn btn-sm btn-info" onclick="addExtension(this.parentNode)">Add Extension</button>
-                    <button class="btn btn-sm btn-info" onclick="removeExtension(this.parentNode)">Remove Extension
-                    </button>
-                </div>
+            <h4>Extensions:</h4>
+            <div class="form-group select">
+                <select class="form-control select-form" id="extension#1">
+                </select>
+                <button class="btn btn-sm btn-info" onclick="addExtension(this.parentNode)">Add Extension</button>
+                <button class="btn btn-sm btn-info removeBtn" onclick="removeExtension(this.parentNode)" disabled>
+                    Remove Extension
+                </button>
             </div>
-            <br>
-            <div>
-                <h4>Attacks to Test Hash Function</h4>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="rainbow">
-                    <label class="form-check-label" for="inlineCheckbox1">Rainbow table attack</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="dictionary" disabled>
-                    <label class="form-check-label" for="inlineCheckbox2">Dictionary attack</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="tunnel">
-                    <label class="form-check-label" for="inlineCheckbox3">Tunneling</label>
-                </div>
+        </div>
+        <br>
+        <div>
+            <h4>Attacks to Test Hash Function</h4>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="rainbow">
+                <label class="form-check-label" for="rainbow">Rainbow table attack</label>
             </div>
-            <br>
-            <div>
-                <h4>Please provide email to receive the results</h4>
-                <input type="email" class="form-control" id="email"
-                       placeholder="Enter email">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="dictionary" disabled>
+                <label class="form-check-label" for="dictionary">Dictionary attack</label>
             </div>
-            <br>
-            <button class="btn btn-lg btn-info">HASH!</button>
-        </form>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tunnel">
+                <label class="form-check-label" for="tunnel">Tunneling</label>
+            </div>
+        </div>
+        <br>
+        <div>
+            <h4>Please provide email to receive the results</h4>
+            <input type="email" class="form-control" id="email"
+                   placeholder="Enter email">
+        </div>
+        <br>
+        <button class="btn btn-lg btn-info" onclick="calculateHash()">HASH!</button>
+        <br>
+        <div class="row my-5" id="resultDiv" hidden>
+            <div class="col-3">
+                <div class="form-control" style="border-color: white; font-size: x-large;">Result Hash</div>
+            </div>
+            <div class="col">
+                <input size="20" type="text" id="result" class="form-control" readonly>
+            </div>
+        </div>
     </main>
 </div>
 

@@ -9,16 +9,12 @@ window.onscroll = function () {
 
 fetch("/api/hashFunctions")
     .then(hashFunctions => hashFunctions.json())
-    .then(hashFunctions => {
-        console.log(hashFunctions);
-        addOptions(document.getElementById("hashFunction"), hashFunctions);
-        return hashFunctions;
-    })
+    .then(hashFunctions => addOptions(document.getElementById("hashFunction"), hashFunctions))
     .catch(e => console.log(e));
 
 fetch("/api/extensions")
     .then(extensions => extensions.json())
-    .then(extensions => addOptions(document.getElementById("extensionSelect#1"), extensions))
+    .then(extensions => addOptions(document.getElementById("extension#1"), extensions))
     .catch(e => console.log(e));
 
 function showGoTopButton() {
@@ -39,6 +35,7 @@ function addExtension(selectForm) {
     const newSelectForm = selectForm.cloneNode(true);
     const id = parseInt(newSelectForm.getElementsByTagName("select")[0].id.split("#")[1]) + 1;
     newSelectForm.getElementsByTagName("select")[0].id = "extentionSelect#" + id;
+    newSelectForm.getElementsByClassName("removeBtn")[0].removeAttribute("disabled");
     selectForm.parentElement.appendChild(newSelectForm);
     // lastSelectId++;
 }
@@ -49,12 +46,53 @@ function removeExtension(selectForm) {
 }
 
 function addOptions(select, options) {
-    console.log(options);
     options.forEach(option => {
-        console.log(option);
         let opt = document.createElement("option");
         opt.value = option;
         opt.textContent = option;
         select.appendChild(opt);
     })
+}
+
+function showResult(resultHash) {
+    document.getElementById("result").value = resultHash;
+    document.getElementById("resultDiv").hidden = false;
+}
+
+function calculateHash() {
+    document.getElementById("resultDiv").hidden = true;
+
+    let data = {};
+    data["extensions"] = [];
+    fillDataWithFields(data, "select");
+    fillDataWithFields(data, "input");
+
+    fetch("/calculate", {
+        method: 'POST',
+        mode: 'same-origin', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *client
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    })
+        .then(resultHash => resultHash.text())
+        .then(resultHash => showResult(resultHash));
+}
+
+function fillDataWithFields(data, tagName) {
+    Array.prototype.forEach.call(document.getElementsByTagName(tagName),
+        (select) => {
+            if (select.type === "checkbox") {
+                data[select.id] = select.checked;
+            } else if (select.id.startsWith("extension")) {
+                data["extensions"].push(select.value);
+            } else {
+                data[select.id] = select.value;
+            }
+        });
 }

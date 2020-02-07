@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import project.persistence.model.CalculateHashBody;
 import project.service.BackendServiceImpl;
 
 import java.util.List;
@@ -36,8 +38,8 @@ public class MainController {
 
     @PostMapping("/calculate")
     @ResponseBody
-    public String calculateHash(){
-        return backendService.calculateHash();
+    public String calculateHash(@RequestBody CalculateHashBody requestBody){
+        return backendService.calculateHash(requestBody);
     }
 
 
@@ -45,7 +47,7 @@ public class MainController {
 //    public String registerUserAccount(@Valid final UserDto accountDto, final HttpServletRequest request) {
 //        log.debug("Registering user account with information: {}", accountDto);
 //
-//        final User registered = userService.registerNewUserAccount(accountDto);
+//        final HashResult registered = userService.registerNewUserAccount(accountDto);
 //        return "Success";
 //    }
 }

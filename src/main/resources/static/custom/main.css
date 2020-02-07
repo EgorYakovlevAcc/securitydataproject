@@ -48,3 +48,9 @@ body {
 .select-form {
     margin-bottom: 10px;
 }
+
+.result {
+    align-items: center;
+    padding-left: 0;
+    margin-right: 0.75rem;
+}
